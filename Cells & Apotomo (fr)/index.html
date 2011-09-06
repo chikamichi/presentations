@@ -1,0 +1,462 @@
+<!doctype html>  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1274, user-scalable=no">
+    <title>Cells & Apotomo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pygments/colorful.css">
+  </head>
+  <body class="list">
+    <header class="caption">
+      <h1>Cells & Apotomo</h1>
+    </header>
+        <div id="slide-0-0" class="slide shout">
+          <div><section>
+            <h1>Cells &amp; Apotomo</h1>
+
+          </section></div>
+        </div>
+        <div id="slide-0-1" class="slide shout">
+          <div><section>
+            <h1>Cells</h1>
+
+          </section></div>
+        </div>
+        <div id="slide-0-2" class="slide ">
+          <div><section>
+            <h1>Cells</h1>
+<blockquote>
+<p>Components for Rails.</p>
+</blockquote>
+<p>Qu'est-ce qu'un composant ? Exemple canonique : <em>un panier d'achat</em>.</p>
+
+<ul>
+<li>M. <strong>Product Owner</strong> dit : le Panier d'Achat</li>
+<li>M. <strong>Framework</strong> dit : un controlleur + une vue</li>
+<li>M. <strong>Programmeur</strong> dit : controlleur + filtres + partials + helpers + …</li>
+<li>…</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-3" class="slide bullets incremental">
+          <div><section>
+            <h1>Cells</h1>
+
+<ul>
+<li>Axé sur la notion de composant fonctionnel.</li>
+<li>Composants réutilisables.</li>
+<li>Composition de composants.</li>
+</ul>
+
+<p>⟹ cellule</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-4" class="slide ">
+          <div><section>
+            <h1>Cells — une cellule…</h1>
+
+<ul>
+<li>permet de modéliser un composant fonctionnel</li>
+<li>ressemble à un (mini-)controlleur</li>
+<li>sera au final rendue sous la forme d'une chaîne de caractères</li>
+<li>peut être rendue n'importe où dans un controlleur ou une vue</li>
+<li>peut être mixée avec une autre cellule (<s>DoubleRenderError</s>)</li>
+<li>peut être mise en cache et testée indépendament des autres</li>
+<li>remet la POO au cœur du framework :)</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-5" class="slide ">
+          <div><section>
+            <h1>Cells — un exemple</h1>
+
+<p><pre><code class="bash"><span class="nv">$ </span>rails generate cell cart display -e haml
+  create  app/cells/
+  create  app/cells/cart
+  create  app/cells/cart_cell.rb
+  create  app/cells/cart/display.html.haml
+  create  <span class="nb">test</span>/cells/cart_test.rb
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-6" class="slide ">
+          <div><section>
+            <h1>Cells – app/cells/cart_cell.rb</h1>
+
+<p><pre><code class="ruby"><span class="k">class</span> <span class="nc">CartCell</span> <span class="o">&lt;</span> <span class="no">Cell</span><span class="o">::</span><span class="no">Rails</span>
+  <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">user</span>   <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="ss">:user</span><span class="o">]</span>
+    <span class="vi">@items</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">items_in_cart</span>
+    <span class="n">render</span> <span class="c1"># renders display.html.haml</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-7" class="slide ">
+          <div><section>
+            <h1>Cells — app/cells/cart/display.html.haml</h1>
+
+<p><pre><code class="haml"><span class="nf">#cart</span>
+  You have <span class="si">#{</span><span class="vi">@items</span><span class="o">.</span><span class="n">size</span><span class="si">}</span> items in your shopping cart.
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-8" class="slide ">
+          <div><section>
+            <h1>Cells — layouts/application.html.erb &amp; …</h1>
+
+<p><pre><code class="erb"><span class="cp">&lt;%=</span> <span class="n">render_cell</span> <span class="ss">:cart</span><span class="p">,</span> <span class="ss">:display</span><span class="p">,</span>
+                <span class="ss">:user</span> <span class="o">=&gt;</span> <span class="vi">@current_user</span> <span class="cp">%&gt;</span><span class="x"></span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-9" class="slide ">
+          <div><section>
+            <h1>Cells — bonnes pratiques</h1>
+
+<ul>
+<li>Dependency injection</li>
+<li>Éviter les partials</li>
+<li>Utiliser l'héritage de vues</li>
+<li>Déléguer avec les Builders</li>
+<li>Penser à mettre en cache</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-10" class="slide ">
+          <div><section>
+            <h1>Cells</h1>
+
+<ul>
+<li><strong><a href="https://github.com/apotonick/cells">github.com/apotonick/cells</a></strong></li>
+<li><a href="https://github.com/apotonick/cells_examples">github.com/apotonick/cells_examples</a></li>
+<li><a href="https://github.com/apotonick/cells-blog-example">github.com/apotonick/cells-blog-example</a></li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-11" class="slide shout">
+          <div><section>
+            <h1>Apotomo</h1>
+
+          </section></div>
+        </div>
+        <div id="slide-0-12" class="slide ">
+          <div><section>
+            <h1>Apotomo</h1>
+<blockquote>
+<p><strong>Web</strong> Components for Rails.</p>
+</blockquote>
+<ul>
+<li>Construit autour de la notion de Widget.</li>
+<li>Widget = Cell + states + events</li>
+</ul>
+
+<p>Ex. canonique : <em>le bloc de commentaires</em>.</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-13" class="slide ">
+          <div><section>
+            <h1>Apotomo — un exemple</h1>
+
+<p><pre><code class="bash"><span class="nv">$ </span>rails generate apotomo:widget CommentsWidget<span class="se">\</span>
+                 display write -e haml
+  create  app/widgets/
+  create  app/widgets/comments_widget
+  create  app/widgets/comments_widget.rb
+  create  app/widgets/comments_widget/display.html.haml
+  create  app/widgets/comments_widget/write.html.haml
+  create  <span class="nb">test</span>/widgets/comments_widget_test.rb
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-14" class="slide ">
+          <div><section>
+            <h1>Apotomo — app/widgets/comments_widget.rb (1/2)</h1>
+
+<p><pre><code class="ruby"><span class="k">class</span> <span class="nc">CommentsWidget</span> <span class="o">&lt;</span> <span class="no">Apotomo</span><span class="o">::</span><span class="no">Widget</span>
+  <span class="n">responds_to_event</span> <span class="ss">:submit</span><span class="p">,</span> <span class="ss">:with</span> <span class="o">=&gt;</span> <span class="ss">:write!</span>
+
+  <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="vi">@comments</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="ss">:post</span><span class="o">].</span><span class="n">comments</span>
+    <span class="n">render</span>
+  <span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-15" class="slide ">
+          <div><section>
+            <h1>Apotomo — app/widgets/comments_widget.rb (2/2)</h1>
+
+<p><pre><code class="ruby">  <span class="k">def</span> <span class="nf">write!</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+    <span class="vi">@comment</span> <span class="o">=</span> <span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:post_id</span> <span class="o">=&gt;</span> <span class="n">evt</span><span class="o">[</span><span class="ss">:post_id</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@comment</span><span class="o">.</span><span class="n">update_attributes</span> <span class="n">evt</span><span class="o">[</span><span class="ss">:comment</span><span class="o">]</span>
+
+    <span class="n">update</span> <span class="ss">:state</span> <span class="o">=&gt;</span> <span class="ss">:display</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-16" class="slide ">
+          <div><section>
+            <h1>Apotomo — app/widgets/comments/display.haml</h1>
+
+<p><pre><code class="ruby"><span class="c1"># let&#39;s talk about this later</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-17" class="slide ">
+          <div><section>
+            <h1>Apotomo — app/controllers/posts_controller.rb</h1>
+
+<p><pre><code class="ruby"><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="kp">include</span> <span class="no">Apotomo</span><span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">ControllerMethods</span>
+  <span class="n">has_widgets</span> <span class="k">do</span> <span class="o">|</span><span class="n">root</span><span class="o">|</span>
+    <span class="n">root</span> <span class="o">&lt;&lt;</span> <span class="n">widget</span><span class="p">(</span><span class="s1">&#39;comments_widget&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;post-comments&#39;</span><span class="p">,</span>
+                   <span class="ss">:post</span> <span class="o">=&gt;</span> <span class="vi">@post</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-18" class="slide ">
+          <div><section>
+            <h1>Apotomo - app/views/posts/show.haml</h1>
+
+<p><pre><code class="ruby"><span class="o">%</span><span class="n">h1</span> <span class="vi">@post</span><span class="o">.</span><span class="n">title</span>
+<span class="o">%</span><span class="nb">p</span>
+  <span class="vi">@post</span><span class="o">.</span><span class="n">body</span>
+<span class="o">%</span><span class="nb">p</span>
+  <span class="o">=</span> <span class="n">render_widget</span> <span class="s1">&#39;post-comments&#39;</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-19" class="slide ">
+          <div><section>
+            <h1>Apotomo – app/widgets/comments/display.haml (1/2)</h1>
+
+<p><pre><code class="ruby"><span class="o">=</span> <span class="n">widget_div</span> <span class="k">do</span>
+  <span class="o">-</span> <span class="n">form_for</span> <span class="ss">:comment</span><span class="p">,</span> <span class="vi">@comment</span><span class="p">,</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="p">{</span>
+               <span class="s2">&quot;data-event-url&quot;</span> <span class="o">=&gt;</span> <span class="n">url_for_event</span><span class="p">(</span><span class="ss">:submit</span><span class="p">)</span>
+             <span class="p">}</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+    <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">error_messages</span>
+    <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:text</span>
+    <span class="o">=</span> <span class="n">submit_tag</span> <span class="s2">&quot;Don&#39;t be shy, comment!&quot;</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-20" class="slide ">
+          <div><section>
+            <h1>Apotomo – app/widgets/comments/display.haml (2/2)</h1>
+
+<p><pre><code class="javascript"><span class="o">:</span><span class="nx">javascript</span>
+  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;##{widget_id} form&quot;</span><span class="p">);</span>
+  <span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;data-event-url&quot;</span><span class="p">),</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">()})</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">});</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-21" class="slide ">
+          <div><section>
+            <h1>Apotomo — testing</h1>
+
+<p><pre><code class="ruby"><span class="k">class</span> <span class="nc">CommentsWidgetTest</span> <span class="o">&lt;</span> <span class="no">Apotomo</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="n">has_widgets</span> <span class="p">{</span> <span class="o">|</span><span class="n">root</span><span class="o">|</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="p">}</span>
+
+  <span class="k">def</span> <span class="nf">test_render</span>
+    <span class="n">render_widget</span> <span class="s1">&#39;me&#39;</span><span class="p">;</span> <span class="n">assert_select</span> <span class="s2">&quot;li#me&quot;</span>
+    <span class="n">trigger</span> <span class="ss">:submit</span><span class="p">,</span> <span class="ss">:comment</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">&quot;…&quot;</span><span class="p">}</span>
+    <span class="n">assert_response</span> <span class="s1">&#39;blabla&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-22" class="slide shout">
+          <div><section>
+            <h1>Atypic / CDGP</h1>
+
+          </section></div>
+        </div>
+        <div id="slide-0-23" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP</h1>
+
+<p><strong>Le besoin</strong> : une API de widgets (<em>blocks</em>) en cross-domain</p>
+
+<p><strong>Notre solution</strong> : un backend Apotomo adapté et du JSONP</p>
+
+<ul>
+<li>Tout CDGP, certaines parties d'Atypic seulement (coffre-fort…)</li>
+<li>Loves Backbone : composants visuels == fonctionnels</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-24" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP — API (1/3)</h1>
+
+<p><pre><code class="ruby"><span class="k">class</span> <span class="nc">Widgets</span><span class="o">::</span><span class="no">DispatcherController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="c1"># rappel : exécuté dans le contexte d&#39;une requête</span>
+  <span class="n">has_widgets</span> <span class="k">do</span> <span class="o">|</span><span class="n">root</span><span class="o">|</span>
+    <span class="n">root</span> <span class="o">&lt;&lt;</span> <span class="n">widget</span><span class="p">(</span><span class="s2">&quot;block_widgets/</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:block_type</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                   <span class="n">params</span><span class="o">[</span><span class="ss">:source</span><span class="o">]</span> <span class="o">||</span> <span class="n">widget_uuid</span><span class="p">,</span>
+                   <span class="n">params</span><span class="p">)</span>
+  <span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-25" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP — API (2/3)</h1>
+
+<p><pre><code class="ruby"><span class="k">def</span> <span class="nf">index</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="n">render_widget</span><span class="p">(</span><span class="n">widget_uuid</span><span class="p">,</span> <span class="ss">:display</span><span class="p">)</span>
+  <span class="n">render_widget!</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">render_event_response</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="n">apotomo_request_processor</span><span class="o">.</span><span class="n">process_for</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+  <span class="n">render_widget!</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-26" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP — API (3/3)</h1>
+
+<p><pre><code class="ruby"><span class="k">def</span> <span class="nf">render_widget!</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+  <span class="c1"># take content, status, metadata from res</span>
+  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+    <span class="nb">format</span><span class="o">.</span><span class="n">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:inline</span> <span class="o">=&gt;</span> <span class="n">content</span><span class="p">,</span>
+                         <span class="ss">:status</span> <span class="o">=&gt;</span> <span class="n">status</span><span class="p">}</span>
+    <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:json</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                           <span class="c1"># smart things here</span>
+                         <span class="p">}</span><span class="o">.</span><span class="n">to_json</span><span class="p">,</span>
+                         <span class="ss">:callback</span> <span class="o">=&gt;</span> <span class="n">params</span><span class="o">[</span><span class="ss">:callback</span><span class="o">]</span> <span class="p">}</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-27" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP – Custom Apotomo backend (1/4)</h1>
+
+<p><pre><code class="ruby"><span class="k">class</span> <span class="nc">RemoteWidget</span> <span class="o">&lt;</span> <span class="no">Apotomo</span><span class="o">::</span><span class="no">Widget</span>
+  <span class="kp">include</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Rescuable</span>
+  <span class="kp">include</span> <span class="no">ApplicationHelper</span>
+  <span class="kp">include</span> <span class="no">WidgetsHelper</span>
+  <span class="n">helper</span> <span class="no">ApplicationHelper</span>
+  <span class="n">helper</span> <span class="no">Widgets</span><span class="o">::</span><span class="no">CssHelper</span>
+  <span class="n">helper</span> <span class="no">Widgets</span><span class="o">::</span><span class="no">SocializeHelper</span>
+  <span class="n">before_filter</span> <span class="ss">:setup!</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-28" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP — Custom Apotomo backend (2/4)</h1>
+
+<p><pre><code class="ruby"><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="c1"># if    ok?         render_ok</span>
+  <span class="c1"># elsif no_content? render_no_content</span>
+  <span class="c1"># elsif error?      render_error</span>
+  <span class="c1"># else  super</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-29" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP — Custom Apotomo backend (3/4)</h1>
+
+<p><pre><code class="ruby"><span class="k">def</span> <span class="nf">render_ok</span><span class="p">(</span><span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+  <span class="n">escape</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">delete</span> <span class="ss">:escape</span>
+  <span class="n">view</span> <span class="o">=</span> <span class="n">render</span><span class="p">(</span><span class="ss">:view</span> <span class="o">=&gt;</span> <span class="vi">@state</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="n">options</span><span class="p">)</span>
+  <span class="n">view</span> <span class="o">=</span> <span class="no">CGI</span><span class="o">::</span><span class="n">escapeHTML</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="k">if</span> <span class="n">escape</span>
+  <span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="n">view</span><span class="p">,</span>
+   <span class="ss">:status</span>  <span class="o">=&gt;</span> <span class="ss">:ok</span><span class="p">,</span>
+   <span class="ss">:metadata</span> <span class="o">=&gt;</span> <span class="vi">@metadata</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre></p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-30" class="slide ">
+          <div><section>
+            <h1>Atypic / CDGP — Custom Apotomo backend (4/4)</h1>
+
+<ul>
+<li><a href="http://git.af83.com/git/?p=cdgp-api.git;a=blob;f=app/widgets/block_widgets/form_widget.rb;h=e57d519f701678dc940e6afa3bc630f5ceb5e3bb;hb=refs/heads/develop">FormWidget</a></li>
+<li><a href="http://git.af83.com/git/?p=cdgp-api.git;a=blob;f=public/javascripts/widgets.js;h=eb67a5eff85ae152a2b714152de48ee9d358fdd9;hb=refs/heads/develop">widgets.js</a></li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-31" class="slide ">
+          <div><section>
+            <h1>Apotomo++</h1>
+
+<ul>
+<li>Du code concis, réutilisable</li>
+<li>Bubbling events</li>
+<li>Composition de widgets</li>
+<li>Simple d'utilisation en équipe</li>
+<li>✔ Test/Unit / MiniTest</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-32" class="slide ">
+          <div><section>
+            <h1>Apotomo</h1>
+
+<ul>
+<li><strong><a href="https://github.com/apotonick/apotomo">github/apotonick/apotomo</a></strong></li>
+<li><a href="http://apotomo.de">apotomo.de</a></li>
+<li><a href="http://apotomo.de/screencasts.html">screencasts</a></li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-33" class="slide shout">
+          <div><section>
+            <h1>:)</h1>
+
+          </section></div>
+        </div>
+	<div class="progress"><div></div></div>
+      <script src="js/script.js"></script>
+	<!-- Copyright © 2010–2011 Vadim Makeev, http://pepelsbey.net/ -->
+  </body>
+</html>
