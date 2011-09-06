@@ -4,8 +4,8 @@ Not exhaustive in any way. Use with caution. Most of them lack the talkative, li
 
 ## English
 
-TODO: host and link my English prez
+*TODO: host and link my English prez*
 
 ## French
 
-* ([af83](http://www.af83.com)) [Cells & Apotomo](http://chikamichi.github.com/presentations/Cells%20&%20Apotomo) — what they are, how to use them & how we built a big Xdomain API widgets with it at af83
+* **[Cells & Apotomo](http://chikamichi.github.com/presentations/Cells%20&%20Apotomo)** ([source](src/cells-apotomo)) — how we used it to build a big Xdomain API widgets at af83
