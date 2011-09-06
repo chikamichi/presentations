@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="38.007cm" height="15.553cm" viewBox="14.900 8.900 52.907 24.453"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<ellipse cx="18.403" cy="21.177" rx="3.403" ry="3.177" fill="#EDD9EA" stroke="none"  /><ellipse cx="18.403" cy="21.177" rx="3.403" ry="3.177" fill="none" stroke="#E818DE"  stroke-width="0.200" /><line x1="21.807" y1="21.177" x2="24.301" y2="21.177" stroke="#E818DE" stroke-width="0.200" />
+<polygon fill="#E818DE" stroke="none" stroke-width="0.200" points="24.676,21.177 24.176,21.427 24.301,21.177 24.176,20.927 "/>
+<polygon fill="none" stroke="#E818DE" stroke-width="0.200"  points="24.676,21.177 24.176,21.427 24.301,21.177 24.176,20.927 "/>
+<ellipse cx="39.403" cy="12.177" rx="3.403" ry="3.177" fill="#FFFCDE" stroke="none"  /><ellipse cx="39.403" cy="12.177" rx="3.403" ry="3.177" fill="none" stroke="#FFA500"  stroke-width="0.200" /><ellipse cx="49.403" cy="12.177" rx="3.403" ry="3.177" fill="#FFFCDE" stroke="none"  /><ellipse cx="49.403" cy="12.177" rx="3.403" ry="3.177" fill="none" stroke="#FFA500"  stroke-width="0.200" /><line x1="42.807" y1="12.177" x2="45.302" y2="12.177" stroke="#FFA500" stroke-width="0.200" />
+<polygon fill="#FFA500" stroke="none" stroke-width="0.200" points="45.677,12.177 45.177,12.427 45.302,12.177 45.177,11.927 "/>
+<polygon fill="none" stroke="#FFA500" stroke-width="0.200"  points="45.677,12.177 45.177,12.427 45.302,12.177 45.177,11.927 "/>
+<line x1="30.810" y1="18.930" x2="36.251" y2="14.654" stroke="#FFA500" stroke-width="0.200" stroke-dasharray="0.50,0.50"/>
+<polygon fill="#FFA500" stroke="none" stroke-width="0.200" points="36.546,14.423 36.307,14.928 36.251,14.654 35.998,14.535 "/>
+<polygon fill="none" stroke="#FFA500" stroke-width="0.200"  points="36.546,14.423 36.307,14.928 36.251,14.654 35.998,14.535 "/>
+<ellipse cx="28.403" cy="21.177" rx="3.403" ry="3.177" fill="#EDD9EA" stroke="none"  /><ellipse cx="28.403" cy="21.177" rx="3.403" ry="3.177" fill="none" stroke="#E818DE"  stroke-width="0.200" /><text x="25.650" y="17.257"  fill="#000000" text-anchor="start" font-size="1.76" font-family="sans" font-style="normal" font-weight="400">
+master</text>
+</svg>

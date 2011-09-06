@@ -1,0 +1,514 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>af83 - Ateliers du lundi - Git - agile team workflow</title>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
+
+  
+    <link rel="stylesheet" href="file/slides.css" type="text/css"/>
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+    setupPreso(false, './');
+  });
+  </script>
+</head>
+
+<body>
+
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">&larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">z</td><td>toggle help (this)</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content center" ref="git/slides/1">
+<h1>Git</h1>
+
+<h2>un workflow agile</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/2">
+<h2>Commen&#xE7;ons par les liens</h2>
+
+<ul>
+<li><a href="http://book.git-scm.com">The git community book</a></li>
+<li><a href="http://www.gitready.com">GitReady</a></li>
+<li><a href="http://progit.org/book/">ProGit</a></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/3">
+<h2>&#xC0; quoi sert git ?</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="git/slides/4">
+<ul>
+<li>&#xC0; <strong>sauvegarder</strong> des &#xE9;tats successifs de fichiers et dossiers</li>
+<li>&#xC0; <strong>partager</strong> ces <strong>versions</strong></li>
+<li>&#xC0; g&#xE9;rer <strong>plusieurs</strong> versions en m&#xEA;me temps</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/5">
+<h2>Les outils de base</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/6">
+<p>Git utilise des <strong>objets</strong> pour organiser un projet versionn&#xE9;. Un objet est repr&#xE9;sent&#xE9; par un code <strong>SHA1</strong> unique, du type :</p>
+
+<pre><code>  6ff87c4664981e4397625791c8ea3bbb5f2279a3
+</code></pre>
+
+<p>Un objet peut &#xEA;tre :</p>
+
+<ul>
+<li>un <strong>blob</strong></li>
+<li>un <strong>tree</strong></li>
+<li>un <strong>commit</strong></li>
+<li>un <strong>tag</strong></li>
+</ul>
+
+
+<p>Enfin, des <strong>commandes pour cr&#xE9;er et manipuler</strong> ces objets :</p>
+
+<pre><code>  git init|clone|add|commit|pull|push|&#x2026;
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/7">
+<pre><code>$&gt; tree
+.
+|-- README
+`-- lib
+    |-- inc
+    |   `-- tricks.rb
+    `-- mylib.rb
+2 directories, 3 files
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="git/slides/8">
+<p><img src="file:///home/jd/af83/ateliersdulundi/git/agile-team-workflow/git/./objects-example.png" width="758" height="618" alt="Les objets de git"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="git/slides/9">
+<h2>Le r&#xE9;pertoire versionn&#xE9;</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="git/slides/10">
+<ul>
+<li>Le <strong><em>working directory</em></strong> est le dossier versionn&#xE9; &#xE0; proprement parler. Ses fichiers et dossiers sont d&#xE9;plac&#xE9;s ou supprim&#xE9;s suite &#xE0; certaines commandes <code>git &#x2026;</code>. C'est donc un espace de travail, pour git et pour vous.</li>
+<li>La <strong><em>staging area</em></strong> ou <strong><em>index</em></strong> est une zone virtuelle qui permet de signaler les versions temporaires de fichiers pr&#xEA;tes &#xE0; &#xEA;tre commit&#xE9;es, puis partag&#xE9;es.</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="git/slides/11">
+<p>Un fichier ou un dossier du <strong><em>working directory</em></strong> peut &#xEA;tre dans l'un des &#xE9;tats suivants, du point de vue de git :</p>
+
+<ul>
+<li><em>untracked</em>, git ne va pas y toucher</li>
+<li>l'&#xE9;tat par d&#xE9;faut pourrait s'appeler <em>up-to-date</em> ou <em>unmodified</em></li>
+<li><em>modified</em>, par rapport &#xE0; la version <em>up-to-date</em></li>
+<li><em>staged</em>, le fichier est pr&#xEA;t &#xE0; &#xEA;tre commit&#xE9;, il r&#xE9;side dans l'<strong><em>index</em></strong></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/12">
+<h2>Commit</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/13">
+<p><strong>Commiter, c'est cr&#xE9;er une nouvelle version dans l'historique.</strong></p>
+
+<p>La recette pour cr&#xE9;er un commit :</p>
+
+<ul>
+<li>s&#xE9;lectionner les fichiers/dossiers dans l'&#xE9;tat <em>modified</em></li>
+<li>les faire passer en <em>staged</em></li>
+<li>cr&#xE9;er le commit pour l'<em>index</em> ainsi cr&#xE9;&#xE9;</li>
+<li>&#xE9;ventuellement, partager le nouvel historique</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/14">
+<p><strong>Un commit, c'est aussi un message qui d&#xE9;crit sa raison d'&#xEA;tre.</strong></p>
+
+<p>Canoniquement, un bon message de commit aurait cette forme :</p>
+
+<pre><code>  Une courte description (une ligne), un n&#xB0; de ticket
+
+  Apr&#xE8;s une ligne vide, une description plus longue
+  du pourquoi du comment, si n&#xE9;cessaire. On pourrait
+  y mentionner des pr&#xE9;cisions importantes, comme des
+  changements cassant la r&#xE9;tro-compatibilit&#xE9; du code,
+  de nouvelles cl&#xE9;s de conf &#xE0; remplir, la logique
+  g&#xE9;n&#xE9;rale d'un bugfix s'il est un peu compliqu&#xE9;&#x2026;
+
+  * parfois,
+  * une liste,
+  * c'est bien aussi !
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/15">
+<h2>Une sp&#xE9;cificit&#xE9; de git : les branches (faciles)</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/16">
+<p>Branches de quel arbre ? De l'historique du projet !</p>
+
+<p><strong>Cr&#xE9;er une branche, c'est initier une nouvelle suite de versions</strong>. On peut changer de branche &#xE0; loisir et faire grossir une branche de l'historique sans toucher aux autres. Par exemple, une branche <code>rails2</code>, une autre <code>rails3</code>, une <code>experimental</code>&#x2026;</p>
+
+<p>Git permet de cr&#xE9;er et de g&#xE9;rer des branches tr&#xE8;s facilement :</p>
+
+<pre><code>git branch
+git checkout -b ma_nouvelle_branche
+git checkout ma_nouvelle_branche
+git checkout master
+git branch -d ma_nouvelle_branche
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/17">
+<h2>Travailler en &#xE9;quipe</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="git/slides/18">
+<ul>
+<li>Git : gestion de versions <strong>d&#xE9;centralis&#xE9;e</strong> (P2P)</li>
+<li>Mais on peut ajouter une <strong>synchronisation</strong>&#x2026;</li>
+<li>&#x2026;en utilisant un d&#xE9;p&#xF4;t central (aargh!)</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/19">
+<h2>Une proposition de workflow</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="git/slides/20">
+<ul>
+<li>Git est assez g&#xE9;n&#xE9;rique, propose beaucoup de commandes&#x2026;</li>
+<li>Manifestement, plusieurs types d'utilisation sont possibles.</li>
+<li>Notre contexte : <strong>travail en &#xE9;quipe</strong>, avec un <strong>d&#xE9;p&#xF4;t central</strong> (synchro), pour des projets (relativement) <strong>agiles</strong>.</li>
+<li>Objectif 1 : essayer de minimiser au maximum les conflits !</li>
+<li>Objectif 2 : essayer de travailler proprement !</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="git/slides/21">
+<h2>Je parlerai&#x2026;</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="git/slides/22">
+<ul>
+<li>des branches : <code>master</code>, et les autres (quelles autres ?)</li>
+<li>du status privil&#xE9;gi&#xE9; du d&#xE9;p&#xF4;t central (<code>origin</code> ?)</li>
+<li>de <code>git pull</code> vs <code>git fetch</code> (?)</li>
+<li>de <code>git rebase</code> (??)</li>
+<li>de l'option <code>--interactive</code> &#x21E2; <code>git rebase -i origin/master</code> (!?!)</li>
+<li>de l'<em>index</em>,  de <code>git diff</code> et ses options (&#x2026;)</li>
+<li>de <code>git checkout</code>, <code>git branch</code> et <code>git merge</code> (O_&#xF4;)</li>
+<li>et m&#xEA;me de <code>git stash</code>, <code>git push</code>, du <code>.gitconfig</code>&#x2026;</li>
+<li>le tout, assembl&#xE9; dans une recette simple et efficace !</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="topic-branches/slides/1">
+<h1>Les <em>topic branches</em></h1>
+
+<h2>et la commande <code>rebase</code></h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="topic-branches/slides/2">
+<ul>
+<li>Une branche est un pointeur vers un commit dans l'historique.</li>
+<li>Git fait essentiellement de la manipulation d'historique&#x2026;</li>
+<li>&#x2026; donc, c'est <strong>facile</strong> de manipuler des branches. <strong>Utilisons-les !</strong></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/3">
+<h2>Trois strat&#xE9;gies pour</h2>
+
+<h2>l'utilisation des branches</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="topic-branches/slides/4">
+<ul>
+<li>pas de strat&#xE9;gie =&gt; tout dans <code>master</code></li>
+<li><em>release branches</em></li>
+<li><strong><em>topic branches</em></strong></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/5">
+<h2>Ok, des branches, mais pourquoi faire ?</h2>
+
+<ul>
+<li><strong>S&#xE9;parer</strong> le code <strong>d&#xE9;veloppement</strong> du code <strong>production</strong>.</li>
+<li><strong>Organiser</strong> son travail en unit&#xE9;s ind&#xE9;pendantes (<strong>topics</strong>)</li>
+<li><strong>Partager</strong> facilement <strong>certaines choses</strong> seulement</li>
+<li><strong>Conserver</strong> un historique commun propre (<strong><code>master</code></strong>)</li>
+<li>Un d&#xE9;p&#xF4;t central n'est jamais qu'une branche distante.</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/6">
+<h2>Trois strat&#xE9;gies pour</h2>
+
+<h2>la fusion de branches</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="topic-branches/slides/7">
+<ul>
+<li><em>fast-forward merge</em></li>
+<li><em>recursive merge</em></li>
+<li><strong><em>rebasing</em></strong></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/8">
+<h2>Cr&#xE9;er une branche</h2>
+
+<pre><code>git branch ma-branche
+git checkout ma-branche
+
+git checkout -b ma-branche
+
+git branch ma-branche HEAD
+git branch ma-branche e24f56
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/9">
+<h2>Se situer, se d&#xE9;placer</h2>
+
+<pre><code>git branch
+git checkout une-branche
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/10">
+<h2>Supprimer une branche</h2>
+
+<pre><code>git branch -d ma-branche
+git branch -D ma-branche
+</code></pre>
+
+<p>Supprime le pointeur vers le commit, pas le commit lui-m&#xEA;me.</p>
+
+<p>Exemple : pour une release, cr&#xE9;er un tag (v2.1&#x2026;), supprimer la branche
+associ&#xE9;e (<code>v2.1</code>). On peut recr&#xE9;er une branche (<code>v2.1.1</code>) &#xE0; partir du
+tag, les commits et donc l'historique associ&#xE9; n'ont jamais disparus.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/11">
+<h2>Fusionner avec <code>merge</code></h2>
+
+<p>La commande se lit ainsi :</p>
+
+<pre><code>git merge une-branche [dans-une-autre]
+</code></pre>
+
+<p>Exemples :</p>
+
+<pre><code>git merge experimental master
+
+git checkout master
+git merge experimental
+
+git pull origin master
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/12">
+<h2>Options utiles de <code>merge</code></h2>
+
+<p>Ne pas commiter automatiquement :</p>
+
+<pre><code>git merge --no-commit
+</code></pre>
+
+<p>Ne pas faire du fast-forward, mais cr&#xE9;er un commit explicite :</p>
+
+<pre><code>git merge --no-ff
+</code></pre>
+
+<p>Un message de commit un peu plus explicite :</p>
+
+<pre><code>git merge --log
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="topic-branches/slides/13">
+<h1><code>git rebase</code></h1>
+
+<h2>R&#xE9;&#xE9;criture de l'historique&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content center" ref="topic-branches/slides/14">
+<h1><code>git rebase</code></h1>
+
+<h2>R&#xE9;&#xE9;criture de l'historique (!!)</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/15">
+<h2>Principe de base</h2>
+
+<p><code>rebase</code> prend une s&#xE9;lection de commits (par exemple, toute une branche),
+et les rejoue &#xE0; la suite d'un autre commit (par exemple, le dernier commit
+d'une autre branche). Les SHA1 sont recalcul&#xE9;s.</p>
+
+<p>Int&#xE9;r&#xEA;t : pouvoir d&#xE9;placer des commits d'un historique &#xE0; un autre tout en
+conservant une suite de commits lin&#xE9;aire, simple &#xE0; explorer.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/16">
+<h2>Hein !?</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/17">
+<h2>Sch&#xE9;matiquement</h2>
+
+<ul>
+<li><code>merge</code> : historique complet (non modifi&#xE9;), mais rapidement inexpoitable</li>
+<li><code>rebase</code> : historique modifi&#xE9; (lin&#xE9;aris&#xE9;), mais exploitable</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/18">
+<h2>Dans le d&#xE9;tail</h2>
+
+<h3>Avec <code>rebase</code>&#x2026;</h3>
+
+<ul>
+<li>l'historique est compr&#xE9;hensible par un &#xEA;tre humain</li>
+<li>la localisation des bugs est facilit&#xE9;e (surtout avec <code>git bisect</code>) et
+il est <em>toujours</em> possible d'isoler un (petit) commit responsable</li>
+<li>les conflits sont r&#xE9;solus un par un, pas tous &#xE0; la fois</li>
+<li>la branche commune (<code>origin</code>) n'est pas pollu&#xE9;e par des commits de <code>merge</code></li>
+<li>si tout le monde utilise <code>git pull --rebase</code>, aucune r&#xE9;solution de conflit
+&#xE0; faire</li>
+<li>le travail d'int&#xE9;gration est tr&#xE8;s simple (pas ou peu de conflits)</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/19">
+<h2>Exemples concrets</h2>
+
+<pre><code>git rebase master
+git rebase e25f5d6
+
+git rebase --continue
+git rebase --skip
+git rebase --abort
+
+git reset --hard ORIG_HEAD
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/20">
+<h1>Avec un d&#xE9;p&#xF4;t central</h1>
+
+<h2>(<em>shared repository</em>)</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/21">
+<h3>Rappatrier les changements partag&#xE9;s par les autres</h3>
+
+<p><code>fetch</code> ou <code>pull</code></p>
+
+<p><code>pull</code> == <code>fetch</code> dans l'index, puis <code>merge</code> dans <code>master</code></p>
+
+<pre><code>git pull --rebase # strat&#xE9;gie
+</code></pre>
+
+<h3>Partager ses commits</h3>
+
+<p><code>push</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental center" ref="topic-branches/slides/22">
+<h2>Les <em>remote branches/repositories</em></h2>
+
+<p>Pour une autre pr&#xE9;sentation ^^</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/23">
+<h2>Pr&#xEA;ts &#xE0; utiliser</h2>
+
+<h2>des <em>topic branches</em></h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/24">
+<h2>En fait, j'ai d&#xE9;j&#xE0; tout dit :)</h2>
+
+<pre><code># 1
+git checkout -b 243-edit-user-profile
+
+# 2
+# hack, hack&#x2026;
+# git add, git commit, git add, git commit&#x2026;
+
+# 3
+git rebase master
+
+# goto 2 autant de fois que n&#xE9;cessaire
+
+# 4
+git checkout master
+git rebase [-i] 243-edit-user-profile
+git branch -d 243-edit-user-profile
+git push
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="topic-branches/slides/25">
+<h2>Quelques remarques</h2>
+
+<ul>
+<li>Il faut bien comprendre le <em>workflow</em> associ&#xE9; &#xE0; <code>rebase</code>.</li>
+<li>Une approche drastique (&#xAB; aucun commit sur <code>master</code> &#xBB;) n'est pas toujours
+pertinente, mais elle est souvent recommand&#xE9;e par les int&#xE9;grateurs de projets
+<em>open source</em>.</li>
+<li>&#xC9;viter les <code>rebase</code> sur des commits partag&#xE9;s.</li>
+<li>Devient vraiment utile si tous les membres de l'&#xE9;quipe l'utilise, car&#x2026;</li>
+<li>&#x2026; <code>rebase</code> est fait pour g&#xE9;rer des branches, donc&#x2026;</li>
+<li>&#x2026; notamment un d&#xE9;p&#xF4;t central et/ou des <em>topic branches</em> !</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="topic-branches/slides/26">
+<h2>Un peu plus loin&#x2026;</h2>
+
+<ul>
+<li><a href="http://book.git-scm.com/4_interactive_rebasing.html"><code>git rebase --interactive</code></a></li>
+<li><a href="http://progit.org/book/ch3-6.html"><code>git rebase --onto</code></a></li>
+<li><a href="http://blog.experimentalworks.net/2009/03/merge-vs-rebase-a-deep-dive-into-the-mysteries-of-revision-control/"><code>merge</code> vs <code>rebase</code></a></li>
+<li><a href="http://progit.org/book/ch3-6.html">The Perils of Rebasing</a></li>
+</ul>
+
+</div>
+</div></div>
+
+</body>
+</html>
