@@ -1,10 +1,10 @@
 # Talks I talked
 
-Not exhaustive in any way. Use with caution. Most of them lack the talkative, live performance :)
+Not exhaustive in any way. Use with caution. Most of them lack the talkative, live performance and, sometimes, demos ;)
 
 ## English
 
-*TODO: host and link my English prez*
+* 11/2011 **[HTML5 Games](http://chikamichi.github.com/presentations/HTML5-Games)** ([source](https://github.com/chikamichi/presentations/tree/master/src/html5-games)) — 4-parts prez about crafting a game (engine) using modern techniques, such as HTML5, and good old sense. In progress!
 
 ## French
 

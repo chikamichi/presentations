@@ -1,0 +1,22 @@
+h2 {
+  color: #666666;
+  font: bold 30px/1.10 'PT Sans Narrow',sans-serif;
+  margin: 0 0 50px
+}
+
+.slide ul {
+  margin-left: 45px;
+}
+
+.full .slide:after {
+  bottom: 20px;
+}
+
+#slide-0-10 p {
+  font-size: 3em;
+  font-weight: bold;
+  padding-top: 150px;
+  text-align: center;
+  width: 100%;
+  color: #666666;
+}

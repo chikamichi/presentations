@@ -1,0 +1,225 @@
+<!doctype html>  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1274, user-scalable=no">
+    <title>HTML5 Games</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pygments/colorful.css">
+      <link rel="stylesheet" href="custom.css">
+  </head>
+  <body class="list">
+    <header class="caption">
+      <h1>HTML5 Games</h1>
+    </header>
+        <div id="slide-0-0" class="slide ">
+          <div><section>
+            <h1>HTML5 Games</h1>
+
+<h2>Not so hard, not so new — my attempt at creating a game (engine)</h2>
+
+          </section></div>
+        </div>
+        <div id="slide-0-1" class="slide ">
+          <div><section>
+            <h1>A W3C workshop…</h1>
+
+<p><img src="pacman.jpg" alt="pacman">
+</p>
+
+<p>This presentation I ma<s><i>d</i></s>ke while attending a 4-weeks W3C workshop about HTML5 Games development (nov. 2011).</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-2" class="slide ">
+          <div><section>
+            <h1>The battlefield</h1>
+
+<ul>
+<li>DOM + CSS(3)</li>
+<li><code>canvas</code></li>
+<li>SVG/VML</li>
+</ul>
+
+<p>Which one should I pick? Hum…</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-3" class="slide ">
+          <div><section>
+            <h1>&quot;Not so new&quot;</h1>
+
+<p>Game design has invariants. And one knows that:</p>
+
+<ul>
+<li>game loops are cool</li>
+<li>rendering is always heavy</li>
+<li>a good Game Design is required to go a long way</li>
+<li>IO is a pain (mostly)</li>
+<li>games are <em>complete</em> and never perfectly designed</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-4" class="slide ">
+          <div><section>
+            <h1>&quot;Not so hard&quot;</h1>
+
+<p>Tools are available. Prototypes are available. Lot of <strong>FOSS</strong>!</p>
+
+<p>But the frameworks are <strong>young</strong> and feature-limited.</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-5" class="slide ">
+          <div><section>
+            <h1>Before we dive in, some great engines</h1>
+
+<ul>
+<li><a href="http://craftyjs.com/">Crafty</a></li>
+<li><a href="http://jawsjs.com/">Jaws</a></li>
+<li><a href="http://gamejs.org/">GameJS</a></li>
+<li><a href="http://www.melonjs.org/">melon.js</a></li>
+<li><a href="http://impactjs.com/">Impact</a></li>
+<li><a href="https://gist.github.com/768272">so many more…</a></li>
+</ul>
+
+<p>This means I must code mine. Before it's too late. Wait…?</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-6" class="slide ">
+          <div><section>
+            <h1>HTML5? Well…</h1>
+
+<ul>
+<li>feature detection (Modernizr)</li>
+<li><code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code></li>
+<li>local storage</li>
+<li>CSS3 for DOM manipulations</li>
+</ul>
+
+<p>But setters, DOM repaint or worse, <code>innerHTML</code>, are slow…</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-7" class="slide ">
+          <div><section>
+            <h1>&amp; the late-guy in the party is:</h1>
+
+<p><code>requestAnimationFrame</code></p>
+<blockquote>
+<p>Tells the browser that you wish to perform an animation; this requests that the browser schedule a repaint of the window for the next animation frame.</p>
+</blockquote>
+<p><a href="https://developer.mozilla.org/en/DOM/window.requestAnimationFrame">MDN</a></p>
+
+<p>~60 FPS max</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-8" class="slide ">
+          <div><section>
+            <h1><code>canvas</code></h1>
+
+<h2>DOM element + 2D/WebGL JavaScript drawing API (<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#the-canvas-element">spec</a>)</h2>
+
+<ul>
+<li>a resolution-dependent <strong>bitmap</strong> canvas</li>
+<li>direct rendering for <strong>drawing images</strong></li>
+<li>alpha <strong>transparency</strong></li>
+<li><strong>no interactions</strong> (see spec)</li>
+</ul>
+
+<p>=&gt; heavy <strong>scripting</strong>, means freedom &amp; trouble</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-9" class="slide ">
+          <div><section>
+            <h1>W3C's workshop 1s assignment</h1>
+
+<h2><em>Create a single element on a scene and control it using mouse or/and keyboard</em> — KISS:</h2>
+
+<ul>
+<li>only 1 canvas</li>
+<li>not too much abstraction yet</li>
+<li>components bind and listen to events</li>
+<li>IO (keyboard) is pre-fetched</li>
+<li>main loop &quot;Knows it All&quot;</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-10" class="slide ">
+          <div><section>
+            <p>demo-effect</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-11" class="slide ">
+          <div><section>
+            <h1><em>This slide is here so that I recall what to say:</em></h1>
+
+<ul>
+<li><code>Game.MainLoop</code></li>
+<li><code>Game.Canvas</code> &amp; rendering instructions</li>
+<li>components (should be <code>Game.Sprites</code>) &amp; &quot;mixins&quot;</li>
+<li>events aggregator</li>
+<li>IO is prefetched</li>
+<li>main loop &quot;Knows it All&quot;</li>
+<li>missing frame rate compensation!</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-12" class="slide ">
+          <div><section>
+            <h1>Errors</h1>
+
+<ul>
+<li>(Most) MVC frameworks are <strong>slow</strong> (DOM rendering, code overhead…)</li>
+<li>You'd <strong>better be free</strong> to choose your code layout</li>
+<li>Law of Demeter (<strong>loose coupling</strong>)…</li>
+</ul>
+
+<p>So I <strong>switched from</strong> a sexy legacy JS, <em>Backbone</em> backend <strong>to</strong> a lighter, <em>CoffeScript class</em>-based layout. So much nicer &amp; simpler. Not so much optimized, but…</p>
+
+          </section></div>
+        </div>
+        <div id="slide-0-13" class="slide ">
+          <div><section>
+            <h1>Optimizations</h1>
+
+<p>Rendering is the heavy part, long before other areas. Ideas:</p>
+
+<ul>
+<li><strong>pre-render</strong> offscreen and <code>drawImage()</code> large chunks</li>
+<li>batch rendering operations</li>
+<li>operate color-wise</li>
+<li>do diff-rendering (targeted updates) — <em>really hard on 1 canvas</em></li>
+<li>use <strong>several layers</strong> — <em>ease diff-rendering</em></li>
+<li>use <strong>integer coordinates</strong></li>
+<li>…</li>
+</ul>
+
+          </section></div>
+        </div>
+        <div id="slide-0-14" class="slide ">
+          <div><section>
+            <h1>Useful resources</h1>
+
+<ul>
+<li><a href="https://developer.mozilla.org/">MDN</a></li>
+<li><strong>Studying a selection of FOSS JS game engines' APIs</strong></li>
+<li><a href="http://www.html5rocks.com">HTML5rocks</a> — <em>nice tutos</em></li>
+<li><a href="http://jsperf.com/">jsPerf</a> — <em>so tight, dude</em></li>
+<li><a href="http://www.playmycode.com/">Play my code</a></li>
+</ul>
+
+          </section></div>
+        </div>
+	<div class="progress"><div></div></div>
+      <script src="js/script.js"></script>
+	<!-- Copyright © 2010–2011 Vadim Makeev, http://pepelsbey.net/ -->
+  </body>
+</html>
